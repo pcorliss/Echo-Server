@@ -11,14 +11,18 @@ Usage
 -----
 
 Checkout from git 
-  git clone http://github.com/pcorliss/Echo-Server
+
+    git clone http://github.com/pcorliss/Echo-Server
 
 Build with ant (Optional, JAR is already included)
-  ant
+
+    ant
 
 Run (Select an appropriate port number)
-  java -jar echo.jar 8080
+
+    java -jar echo.jar 8080
 
 Open in a browser
-  http://localhost:8080/
-  http://localhost:8080/?status=200&type=text/plain&echo=Hello%20World
+
+    http://localhost:8080/
+    http://localhost:8080/?status=200&type=text/plain&echo=Hello%20World
