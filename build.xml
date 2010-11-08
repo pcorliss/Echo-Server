@@ -2,7 +2,25 @@
 <project default="create_run_jar" name="Create Runnable Jar for Project echo with Jar-in-Jar Loader">
     <!--this file was created by Eclipse Runnable JAR Export Wizard-->
     <!--ANT 1.7 is required                                        -->
-    <target name="create_run_jar">
+    
+    
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac classpathref="compile.classpath" srcdir="src" destdir="build/classes"/>
+    </target>
+    
+    <path id="compile.classpath">
+        <fileset dir="lib" includes="jetty-server-7.1.6.v20100715.jar"/>
+        <fileset dir="lib" includes="jetty-servlet-7.1.6.v20100715.jar"/>
+        <fileset dir="lib" includes="jetty-util-7.1.6.v20100715.jar"/>
+        <fileset dir="lib" includes="servlet-api-2.5.jar"/>
+        <fileset dir="lib" includes="jetty-http-7.1.6.v20100715.jar"/>
+        <fileset dir="lib" includes="jetty-io-7.1.6.v20100715.jar"/>
+        <fileset dir="lib" includes="jetty-security-7.1.6.v20100715.jar"/>
+        <fileset dir="lib" includes="jetty-continuation-7.1.6.v20100715.jar"/>
+    </path>
+    
+    <target name="create_run_jar" depends="compile" >
         <jar destfile="echo.jar">
             <manifest>
                 <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
@@ -11,7 +29,7 @@
                 <attribute name="Rsrc-Class-Path" value="./ jetty-server-7.1.6.v20100715.jar jetty-servlet-7.1.6.v20100715.jar jetty-util-7.1.6.v20100715.jar servlet-api-2.5.jar jetty-http-7.1.6.v20100715.jar jetty-io-7.1.6.v20100715.jar jetty-security-7.1.6.v20100715.jar jetty-continuation-7.1.6.v20100715.jar"/>
             </manifest>
             <zipfileset src="jar-in-jar-loader.zip"/>
-            <fileset dir="src"/>
+            <fileset dir="build/classes"/>
             <zipfileset dir="lib" includes="jetty-server-7.1.6.v20100715.jar"/>
             <zipfileset dir="lib" includes="jetty-servlet-7.1.6.v20100715.jar"/>
             <zipfileset dir="lib" includes="jetty-util-7.1.6.v20100715.jar"/>
